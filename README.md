@@ -11,8 +11,8 @@ make up
 * node label 확인
 
 ```bash
-kubectl get node -l tier=blue
-kubectl get node -l tier=green
+kubectl get node -l alpha=true
+kubectl get node -l beta=true
 ```
 
 * kind 클러스 삭제
