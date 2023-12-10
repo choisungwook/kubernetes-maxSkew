@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpha-example
+  namespace: default
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: alpha-example
+  template:
+    metadata:
+      labels:
+        app: alpha-example
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: alpha
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: alpha-example
+      containers:
+      - name: pause
+        image: registry.k8s.io/pause:3.1
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
