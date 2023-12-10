@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beta-example
+  namespace: default
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: beta-example
+  template:
+    metadata:
+      labels:
+        app: beta-example
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 3
+        topologyKey: beta
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: beta-example
+      containers:
+      - name: pause
+        image: registry.k8s.io/pause:3.1
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"

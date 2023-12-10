@@ -14,16 +14,16 @@ nodes:
 - role: worker
   image: kindest/node:v1.28.0
   labels:
-    tier: blue
+    alpha: true
 - role: worker
   image: kindest/node:v1.28.0
   labels:
-    tier: blue
+    alpha: true
 - role: worker
   image: kindest/node:v1.28.0
   labels:
-    tier: green
+    beta: true
 - role: worker
   image: kindest/node:v1.28.0
   labels:
-    tier: green
+    beta: true

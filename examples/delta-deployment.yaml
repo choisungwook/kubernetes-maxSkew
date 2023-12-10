@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delta-example
+  namespace: default
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: delta-example
+  template:
+    metadata:
+      labels:
+        app: delta-example
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: delta
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: delta-example
+      containers:
+      - name: pause
+        image: registry.k8s.io/pause:3.1
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
