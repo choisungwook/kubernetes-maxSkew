@@ -20,3 +20,12 @@ kubectl get node -l beta=true
 ```bash
 make down
 ```
+
+# 예제 실행 방법
+```bash
+# 생성
+kubectl apply -f ./examples
+
+# 삭제
+kubectl delete -f ./examples
+```
